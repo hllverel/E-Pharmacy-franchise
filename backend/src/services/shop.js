@@ -40,3 +40,5 @@ export const updateShop = async (userId, shopId, payload) => {
   }
   return shop;
 };
+
+export const getShopByOwner = (userId) => Shop.findOne({ owner: userId });

@@ -1,4 +1,5 @@
 import { registerUser, loginUser, logoutUser } from '../services/auth.js';
+import { getShopByOwner } from '../services/shop.js';
 
 export const registerUserController = async (req, res) => {
   const user = await registerUser(req.body);
@@ -34,9 +35,15 @@ export const logoutUserController = async (req, res) => {
 };
 
 export const getUserInfoController = async (req, res) => {
+  const shop = await getShopByOwner(req.user._id);
+
   res.status(200).json({
     status: 200,
     message: 'User info retrieved successfully',
-    data: { name: req.user.name, email: req.user.email },
+    data: {
+      name: req.user.name,
+      email: req.user.email,
+      shopId: shop ? shop._id : null,
+    },
   });
 };

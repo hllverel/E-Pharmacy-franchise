@@ -10,10 +10,13 @@ import {
   getShopController,
   updateShopController,
 } from '../controllers/shop.js';
+import productRouter from './product.js'
 
 const router = Router();
 
 router.use(ctrlWrapper(authenticate));
+
+router.use('/:shopId/product', productRouter);
 
 router.post(
   '/create',
