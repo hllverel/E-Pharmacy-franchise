@@ -6,6 +6,7 @@ import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import authRouter from './routers/auth.js';
 import shopRouter from './routers/shop.js';
+import statisticsRouter from './routers/statistics.js';
 
 const PORT = process.env.PORT || 3000;
 
@@ -22,6 +23,7 @@ const startServer = async () => {
 
   app.use('/api/user', authRouter);
   app.use('/api/shop', shopRouter);
+  app.use('/api/statistics', statisticsRouter);
 
   app.use(notFoundHandler);
   app.use(errorHandler);
