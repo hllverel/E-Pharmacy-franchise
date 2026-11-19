@@ -4,11 +4,12 @@ import { validateBody } from '../middlewares/validateBody.js';
 import { validateQuery } from '../middlewares/validateQuery.js';
 import { isValidId } from '../middlewares/isValidId.js';
 import { checkShopOwner } from '../middlewares/checkShopOwner.js';
+import { isValidProductId } from '../middlewares/isValidProductId.js';
 import { upload } from '../middlewares/upload.js';
-import { createProductSchema, productQuerySchema } from '../validation/product.js';
+import { createProductSchema, productQuerySchema, updateProductSchema } from '../validation/product.js';
 import {
   createProductController,
-  getProductsController,
+  getProductsController, getProductByIdController, addToShopController, updateProductController, deleteProductController
 } from '../controllers/product.js';
 
 const router = Router({ mergeParams: true });
@@ -22,6 +23,28 @@ router.post(
   upload.single('photo'),
   validateBody(createProductSchema),
   ctrlWrapper(createProductController),
+);
+
+router.get('/:productId', isValidProductId, ctrlWrapper(getProductByIdController));
+
+router.post(
+  '/:productId/add-to-shop',
+  isValidProductId,
+  ctrlWrapper(addToShopController),
+);
+
+router.put(
+  '/:productId/edit',
+  isValidProductId,
+  upload.single('photo'),
+  validateBody(updateProductSchema),
+  ctrlWrapper(updateProductController),
+);
+
+router.delete(
+  '/:productId/delete',
+  isValidProductId,
+  ctrlWrapper(deleteProductController),
 );
 
 export default router;

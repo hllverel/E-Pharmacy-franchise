@@ -17,7 +17,7 @@ export const updateProductSchema = Joi.object({
   category: Joi.string().valid(...PRODUCT_CATEGORIES),
   stock: Joi.number().integer().min(0),
   suppliers: Joi.string().max(100).allow(''),
-}).min(1);
+});
 
 export const productQuerySchema = Joi.object({
   scope: Joi.string().valid('shop', 'all').default('shop'),
