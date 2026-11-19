@@ -1,5 +1,5 @@
 import { PRODUCT_CATEGORIES } from '../constants/categories.js';
-import { createProduct, getProducts, getProductById, addToShop, updateProduct, deleteProduct } from '../services/product.js';
+import { createProduct, getProducts, getProductById, addToShop, updateProduct, deleteProduct, getProductReviews } from '../services/product.js';
 
 export const getProductsController = async (req, res) => {
   const result = await getProducts(req.shop._id, req.validatedQuery);
@@ -62,5 +62,15 @@ export const deleteProductController = async (req, res) => {
   res.status(200).json({
     status: 200,
     message: 'Product deleted successfully',
+  });
+};
+
+export const getProductReviewsController = async (req, res) => {
+  const result = await getProductReviews(req.params.productId, req.validatedQuery);
+
+  res.status(200).json({
+    status: 200,
+    message: 'Reviews retrieved successfully',
+    data: result,
   });
 };

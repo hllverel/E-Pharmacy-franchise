@@ -6,10 +6,10 @@ import { isValidId } from '../middlewares/isValidId.js';
 import { checkShopOwner } from '../middlewares/checkShopOwner.js';
 import { isValidProductId } from '../middlewares/isValidProductId.js';
 import { upload } from '../middlewares/upload.js';
-import { createProductSchema, productQuerySchema, updateProductSchema } from '../validation/product.js';
+import { createProductSchema, productQuerySchema, updateProductSchema, reviewsQuerySchema } from '../validation/product.js';
 import {
   createProductController,
-  getProductsController, getProductByIdController, addToShopController, updateProductController, deleteProductController
+  getProductsController, getProductByIdController, addToShopController, updateProductController, deleteProductController, getProductReviewsController
 } from '../controllers/product.js';
 
 const router = Router({ mergeParams: true });
@@ -45,6 +45,13 @@ router.delete(
   '/:productId/delete',
   isValidProductId,
   ctrlWrapper(deleteProductController),
+);
+
+router.get(
+  '/:productId/reviews',
+  isValidProductId,
+  validateQuery(reviewsQuerySchema),
+  ctrlWrapper(getProductReviewsController),
 );
 
 export default router;

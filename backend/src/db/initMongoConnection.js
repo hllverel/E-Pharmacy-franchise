@@ -1,6 +1,9 @@
 import mongoose from 'mongoose';
 import dns from 'node:dns';
-dns.setServers(['8.8.8.8', '1.1.1.1']);
+
+if (process.env.USE_PUBLIC_DNS === 'true') {
+  dns.setServers(['8.8.8.8', '1.1.1.1']);
+}
 
 export const initMongoConnection = async () => {
   try {

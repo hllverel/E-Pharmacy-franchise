@@ -1,6 +1,7 @@
 import createHttpError from 'http-errors';
 import { Product } from '../models/product.js';
 import { uploadImage } from '../utils/cloudinary.js';
+import { Review } from '../models/review.js';
 
 const escapeRegex = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -102,4 +103,23 @@ export const deleteProduct = async (shopId, productId) => {
   if (!product) {
     throw createHttpError(404, 'Product not found');
   }
+};
+
+export const getProductReviews = async (productId, { page, limit }) => {
+  const product = await Product.findById(productId, 'sourceProduct');
+  if (!product) {
+    throw createHttpError(404, 'Product not found');
+  }
+
+  const filter = { product: product.sourceProduct ?? product._id };
+
+  const [reviews, totalItems] = await Promise.all([
+    Review.find(filter)
+      .sort({ date: -1, _id: -1 })
+      .skip((page - 1) * limit)
+      .limit(limit),
+    Review.countDocuments(filter),
+  ]);
+
+  return { reviews, totalItems, totalPages: Math.ceil(totalItems / limit), page };
 };
