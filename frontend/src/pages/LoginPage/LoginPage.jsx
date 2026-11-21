@@ -1,7 +1,10 @@
-const LoginPage = () => {
-    return (
-      <h2>LoginPage</h2>
-  );
-};
+import AuthLayout from "../../components/AuthLayout/AuthLayout";
+import LoginForm from "../../components/LoginForm/LoginForm";
 
-export default LoginPage;
+export default function RegisterPage() {
+  return (
+    <AuthLayout>
+      <LoginForm />
+    </AuthLayout>
+  );
+}
