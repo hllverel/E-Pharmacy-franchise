@@ -1,8 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api, setAuthHeader, clearAuthHeader } from '../../api/axiosInstance';
+import { getErrorMessage } from '../../utils/getErrorMessage';
 
-const getErrorMessage = (error) =>
-  error.response?.data?.message || error.message;
 
 export const register = createAsyncThunk(
   'auth/register',

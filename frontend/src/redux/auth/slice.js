@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { register, login, logout, refreshUser } from './operations';
+import { createShop } from '../shop/operations';
 
 const initialState = {
   user: { name: null, email: null },
@@ -52,6 +53,9 @@ const authSlice = createSlice({
         state.token = null;
         state.isLoggedIn = false;
         state.isRefreshing = false;
+      })
+      .addCase(createShop.fulfilled, (state, action) => {
+        state.shopId = action.payload._id;
       });
   },
 });
