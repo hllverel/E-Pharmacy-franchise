@@ -7,11 +7,16 @@ import { persistor, store } from './redux/store.js'
 import { PersistGate } from 'redux-persist/integration/react'
 import { BrowserRouter } from "react-router-dom"
 import { Toaster } from "react-hot-toast"
+import { refreshUser } from './redux/auth/operations.js'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
+      <PersistGate
+        loading={null}
+        persistor={persistor}
+        onBeforeLift={() => store.dispatch(refreshUser())}
+      >
         <BrowserRouter>
           <App />
           <Toaster />
