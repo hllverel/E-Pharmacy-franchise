@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import Icon from '../Icon/Icon';
+import { useNavLinks } from '../../hooks/useNavLinks';
 import styles from './Footer.module.css';
 
 const socialLinks = [
@@ -9,39 +10,21 @@ const socialLinks = [
   { name: 'YouTube', href: 'https://www.youtube.com/c/GoIT', icon: 'youtube' },
 ];
 
-const navLinks = [
-  { to: '/shop', label: 'Shop' },
-  { to: '/shop?tab=all', label: 'Medicine' },
-  { to: '/statistics', label: 'Statistics' },
-];
-
 export default function Footer() {
+  const navLinks = useNavLinks();
+
   return (
     <footer className={styles.footer}>
-      <div className={styles.top}>
+      <div className={styles.brand}>
         <Logo light />
-        <p className={styles.text}>
-          Get the medicine to help you feel better, get back to your active
-          life, and enjoy every moment.
-        </p>
-        <ul className={styles.social}>
-          {socialLinks.map(({ name, href, icon }) => (
-            <li key={name}>
-              <a
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={name}
-                className={styles.socialLink}
-              >
-                <Icon name={icon} className={styles.socialIcon} />
-              </a>
-            </li>
-          ))}
-        </ul>
       </div>
 
-      <nav aria-label="Footer navigation">
+      <p className={styles.text}>
+        Created a drug franchise that embodies effective formulas and changes the
+        approach to treatment.
+      </p>
+
+      <nav aria-label="Footer navigation" className={styles.nav}>
         <ul className={styles.navList}>
           {navLinks.map(({ to, label }) => (
             <li key={label}>
@@ -52,6 +35,22 @@ export default function Footer() {
           ))}
         </ul>
       </nav>
+
+      <ul className={styles.social}>
+        {socialLinks.map(({ name, href, icon }) => (
+          <li key={name}>
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={name}
+              className={styles.socialLink}
+            >
+              <Icon name={icon} className={styles.socialIcon} />
+            </a>
+          </li>
+        ))}
+      </ul>
 
       <div className={styles.bottom}>
         <p className={styles.copyright}>© E-Pharmacy 2023. All Rights Reserved</p>

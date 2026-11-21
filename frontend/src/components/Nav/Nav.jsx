@@ -1,29 +1,9 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useNavLinks } from '../../hooks/useNavLinks';
 import styles from './Nav.module.css';
 
 export default function Nav({ onNavigate }) {
-  const { pathname, search } = useLocation();
-  const isAllMedicine = new URLSearchParams(search).get('tab') === 'all';
-
-  const links = [
-    {
-      to: '/shop',
-      label: 'Shop',
-      isActive: pathname === '/shop' && !isAllMedicine,
-    },
-    {
-      to: '/shop?tab=all',
-      label: 'Medicine',
-      isActive:
-        (pathname === '/shop' && isAllMedicine) ||
-        pathname.startsWith('/medicine'),
-    },
-    {
-      to: '/statistics',
-      label: 'Statistics',
-      isActive: pathname.startsWith('/statistics'),
-    },
-  ];
+  const links = useNavLinks();
 
   return (
     <nav aria-label="Main navigation">
