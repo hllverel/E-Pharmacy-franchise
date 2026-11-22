@@ -15,8 +15,6 @@ export default function Logo({ light = false }) {
         src={src}
         srcSet={`${src} 1x, ${src2x} 2x`}
         alt=""
-        width="44"
-        height="44"
         className={styles.icon}
       />
       <span className={styles.text}>E-Pharmacy</span>
