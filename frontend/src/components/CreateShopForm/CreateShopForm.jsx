@@ -9,7 +9,7 @@ import DeliveryRadios from '../DeliveryRadios/DeliveryRadios';
 import Icon from '../Icon/Icon';
 import { createShop } from '../../redux/shop/operations';
 import { selectIsShopLoading } from '../../redux/shop/selectors';
-import { createShopSchema } from '../../validation/authSchemas';
+import { createShopSchema } from '../../validation/shopSchemas';
 import { ALLOWED_IMAGE_TYPES, MAX_IMAGE_SIZE } from '../../constants/upload';
 import styles from './CreateShopForm.module.css';
 

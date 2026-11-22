@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { createShop } from './operations';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { createShop, getShop, updateShop } from './operations';
 import { logout } from '../auth/operations';
 
 const initialState = {
@@ -12,18 +12,33 @@ const shopSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder
-      .addCase(createShop.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(createShop.fulfilled, (state, action) => {
-        state.shop = action.payload;
-        state.isLoading = false;
-      })
-      .addCase(createShop.rejected, (state) => {
-        state.isLoading = false;
-      })
       .addCase(logout.fulfilled, () => initialState)
-      .addCase(logout.rejected, () => initialState);
+      .addCase(logout.rejected, () => initialState)
+      .addMatcher(
+        isAnyOf(createShop.fulfilled, getShop.fulfilled, updateShop.fulfilled),
+        (state, action) => {
+          state.shop = action.payload;
+        },
+      )
+      .addMatcher(
+        isAnyOf(createShop.pending, getShop.pending, updateShop.pending),
+        (state) => {
+          state.isLoading = true;
+        },
+      )
+      .addMatcher(
+        isAnyOf(
+          createShop.fulfilled,
+          getShop.fulfilled,
+          updateShop.fulfilled,
+          createShop.rejected,
+          getShop.rejected,
+          updateShop.rejected,
+        ),
+        (state) => {
+          state.isLoading = false;
+        },
+      );
   },
 });
 
