@@ -22,10 +22,18 @@
   left: 210px;
 }
 
+.formWrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 @media (min-width: 768px) {
   .section {
     margin-top: 168px;
     align-items: flex-start;
+    gap: 54px;
   }
 
   .hero {
@@ -38,12 +46,15 @@
     top: -225px;
     left: 390px;
   }
+
+  .formWrap {
+    align-items: flex-start;
+  }
 }
 
 @media (min-width: 1440px) {
   .section {
     margin-top: 226px;
     flex-direction: row;
-    gap: 54px;
   }
 }
