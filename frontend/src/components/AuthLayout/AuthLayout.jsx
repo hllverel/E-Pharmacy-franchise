@@ -7,17 +7,20 @@ export default function AuthLayout({ children }) {
     <section className={styles.section}>
       <div className={styles.hero}>
         <h1 className={styles.title}>
-          Your medication, delivered Say goodbye to all{' '}
+          Your medication, delivered. Say goodbye
+          <div style={{ width: "0", height: "0"}}>
+            <img
+              src={pill}
+              srcSet={`${pill} 1x, ${pill2x} 2x`}
+              alt=""
+              width="180"
+              height="180"
+              className={styles.pill}
+            />
+          </div>
+          to all{' '}
           <span className={styles.accent}>your healthcare</span> worries with us
         </h1>
-        <img
-          src={pill}
-          srcSet={`${pill} 1x, ${pill2x} 2x`}
-          alt=""
-          width="180"
-          height="180"
-          className={styles.pill}
-        />
       </div>
       <div className={styles.formWrap}>{children}</div>
     </section>

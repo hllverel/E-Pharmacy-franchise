@@ -1,0 +1,49 @@
+.section {
+  margin-top: 106px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.hero {
+  max-width: 335px;
+}
+
+.accent {
+  color: var(--green);
+}
+
+.pill {
+  width: 95px;
+  height: 93px;
+  position: relative;
+  top: -125px;
+  left: 210px;
+}
+
+@media (min-width: 768px) {
+  .section {
+    margin-top: 168px;
+    align-items: flex-start;
+  }
+
+  .hero {
+    max-width: 614px;
+  }
+
+  .pill {
+    width: 179px;
+    height: 175px;
+    top: -225px;
+    left: 390px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .section {
+    margin-top: 226px;
+    flex-direction: row;
+    gap: 54px;
+  }
+}

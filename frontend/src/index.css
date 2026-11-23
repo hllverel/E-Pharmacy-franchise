@@ -80,6 +80,9 @@ input {
 }
 
 @media (min-width: 768px) {
+  body {
+    padding: 28px 32px;
+  }
   h1 {
     font-size: 54px;
     line-height: 1.11111;
@@ -97,4 +100,7 @@ input {
 }
 
 @media (min-width: 1440px) {
+  body {
+    padding: 28px 100px;
+  }
 }
