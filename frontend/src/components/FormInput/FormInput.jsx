@@ -1,9 +1,10 @@
 import { useId } from 'react';
 import styles from './FormInput.module.css';
 
-export default function FormInput({ label, error, registration, ...inputProps }) {
+export default function FormInput({label, error, registration, multiline = false, ...inputProps}) {
   const id = useId();
   const errorId = `${id}-error`;
+  const Control = multiline ? 'textarea' : 'input';
 
   return (
     <div className={styles.field}>
@@ -12,7 +13,7 @@ export default function FormInput({ label, error, registration, ...inputProps })
           {label}
         </label>
       )}
-      <input
+      <Control
         id={id}
         className={`${styles.input} ${error ? styles.invalid : ''}`}
         aria-label={label ? undefined : inputProps.placeholder}

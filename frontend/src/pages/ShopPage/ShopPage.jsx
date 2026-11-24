@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
@@ -7,6 +7,9 @@ import Tabs from '../../components/Tabs/Tabs';
 import FilterPanel from '../../components/FilterPanel/FilterPanel';
 import ProductList from '../../components/ProductList/ProductList';
 import Pagination from '../../components/Pagination/Pagination';
+import AddProductModal from '../../components/AddProductModal/AddProductModal';
+import EditProductModal from '../../components/EditProductModal/EditProductModal';
+import DeleteProductModal from '../../components/DeleteProductModal/DeleteProductModal';
 import { getShop } from '../../redux/shop/operations';
 import { fetchProducts } from '../../redux/products/operations';
 import { selectShop } from '../../redux/shop/selectors';
@@ -30,6 +33,7 @@ const TABS = [
 export default function ShopPage() {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [modal, setModal] = useState(null);
 
   const shopId = useSelector(selectShopId);
   const shop = useSelector(selectShop);
@@ -50,7 +54,7 @@ export default function ShopPage() {
       .catch((message) => toast.error(message));
   }, [dispatch, shopId]);
 
-  useEffect(() => {
+  const loadProducts = useCallback(() => {
     const params = {
       scope: tab === 'all' ? 'all' : 'shop',
       page,
@@ -62,10 +66,16 @@ export default function ShopPage() {
       params.search = search;
     }
 
-    dispatch(fetchProducts({ shopId, params }))
+    return dispatch(fetchProducts({ shopId, params }))
       .unwrap()
       .catch((message) => toast.error(message));
   }, [dispatch, shopId, tab, category, search, page]);
+
+  useEffect(() => {
+    loadProducts();
+  }, [loadProducts]);
+
+  const closeModal = () => setModal(null);
 
   const handleTabChange = (id) => {
     setSearchParams(id === 'all' ? { tab: 'all' } : {});
@@ -89,11 +99,29 @@ export default function ShopPage() {
     window.scrollTo(0, 0);
   };
 
+  const handleProductAdded = () => {
+    if (tab === 'store' && page === 1) {
+      loadProducts();
+    } else {
+      setSearchParams({});
+    }
+  };
+
+  const handleProductDeleted = () => {
+    if (products.length === 1 && page > 1) {
+      handlePageChange(page - 1);
+    } else {
+      loadProducts();
+    }
+  };
+
   const isShopReady = shop && shop._id === shopId;
 
   return (
     <div className={styles.page}>
-      {isShopReady && <ShopHeader shop={shop} />}
+      {isShopReady && (
+        <ShopHeader shop={shop} onAddMedicine={() => setModal({ type: 'add' })} />
+      )}
       <Tabs tabs={TABS} activeTab={tab} onChange={handleTabChange} label="Medicine lists" />
 
       {tab === 'all' && (
@@ -110,9 +138,31 @@ export default function ShopPage() {
         products={products}
         variant={tab === 'all' ? 'catalogue' : 'store'}
         isLoading={isLoading}
+        onEdit={(product) => setModal({ type: 'edit', product })}
+        onDelete={(product) => setModal({ type: 'delete', product })}
       />
 
       <Pagination page={currentPage} totalPages={totalPages} onChange={handlePageChange} />
+
+      {modal?.type === 'add' && (
+        <AddProductModal shopId={shopId} onClose={closeModal} onSuccess={handleProductAdded} />
+      )}
+      {modal?.type === 'edit' && (
+        <EditProductModal
+          shopId={shopId}
+          product={modal.product}
+          onClose={closeModal}
+          onSuccess={loadProducts}
+        />
+      )}
+      {modal?.type === 'delete' && (
+        <DeleteProductModal
+          shopId={shopId}
+          product={modal.product}
+          onClose={closeModal}
+          onSuccess={handleProductDeleted}
+        />
+      )}
     </div>
   );
 }
