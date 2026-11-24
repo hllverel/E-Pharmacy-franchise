@@ -4,7 +4,7 @@ import placeholder2x from '../../assets/images/product-placeholder@2x.webp';
 import { formatPrice } from '../../utils/formatPrice';
 import styles from './ProductCard.module.css';
 
-export default function ProductCard({ product, variant, onEdit, onDelete, onAddToShop }) {
+export default function ProductCard({ product, variant, isPending, onEdit, onDelete, onAddToShop }) {
   return (
     <li className={styles.card}>
       <div className={styles.imageBox}>
@@ -36,9 +36,14 @@ export default function ProductCard({ product, variant, onEdit, onDelete, onAddT
             </>
           ) : (
             <>
-              <button type="button" className={styles.primary} onClick={() => onAddToShop?.(product)}>
-                Add to shop
-              </button>
+<button
+  type="button"
+  className={styles.primary}
+  onClick={() => onAddToShop?.(product)}
+  disabled={isPending}
+>
+  Add to shop
+</button>
               <Link to={`/medicine/${product._id}`} className={styles.details}>
                 Details
               </Link>

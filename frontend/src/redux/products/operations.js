@@ -52,3 +52,17 @@ export const deleteProduct = createAsyncThunk(
     }
   },
 );
+
+export const addToShop = createAsyncThunk(
+  'products/addToShop',
+  async ({ shopId, productId }, thunkAPI) => {
+    try {
+      const { data } = await api.post(
+        `/shop/${shopId}/product/${productId}/add-to-shop`,
+      );
+      return data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(getErrorMessage(error));
+    }
+  },
+);

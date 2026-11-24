@@ -21,6 +21,7 @@ import {
   selectTotalPages,
   selectIsProductsLoading,
 } from '../../redux/products/selectors';
+import { useAddToShop } from '../../hooks/useAddToShop';
 import styles from './ShopPage.module.css';
 
 const PRODUCTS_PER_PAGE = 12;
@@ -42,6 +43,7 @@ export default function ShopPage() {
   const currentPage = useSelector(selectProductsPage);
   const totalPages = useSelector(selectTotalPages);
   const isLoading = useSelector(selectIsProductsLoading);
+  const { addProduct, pendingId } = useAddToShop();
 
   const tab = searchParams.get('tab') === 'all' ? 'all' : 'store';
   const category = searchParams.get('category') ?? '';
@@ -107,13 +109,20 @@ export default function ShopPage() {
     }
   };
 
-  const handleProductDeleted = () => {
+  const handleProductRemoved = () => {
     if (products.length === 1 && page > 1) {
       handlePageChange(page - 1);
     } else {
       loadProducts();
     }
   };
+
+  const handleAddToShop = async (product) => {
+  const isAdded = await addProduct(product._id);
+  if (isAdded) {
+    handleProductRemoved();
+  }
+};
 
   const isShopReady = shop && shop._id === shopId;
 
@@ -134,13 +143,15 @@ export default function ShopPage() {
         />
       )}
 
-      <ProductList
-        products={products}
-        variant={tab === 'all' ? 'catalogue' : 'store'}
-        isLoading={isLoading}
-        onEdit={(product) => setModal({ type: 'edit', product })}
-        onDelete={(product) => setModal({ type: 'delete', product })}
-      />
+<ProductList
+  products={products}
+  variant={tab === 'all' ? 'catalogue' : 'store'}
+  isLoading={isLoading}
+  pendingProductId={pendingId}
+  onEdit={(product) => setModal({ type: 'edit', product })}
+  onDelete={(product) => setModal({ type: 'delete', product })}
+  onAddToShop={handleAddToShop}
+/>
 
       <Pagination page={currentPage} totalPages={totalPages} onChange={handlePageChange} />
 
@@ -160,7 +171,7 @@ export default function ShopPage() {
           shopId={shopId}
           product={modal.product}
           onClose={closeModal}
-          onSuccess={handleProductDeleted}
+          onSuccess={handleProductRemoved}
         />
       )}
     </div>

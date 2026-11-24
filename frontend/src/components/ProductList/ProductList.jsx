@@ -5,6 +5,7 @@ export default function ProductList({
   products,
   variant,
   isLoading,
+  pendingProductId,
   onEdit,
   onDelete,
   onAddToShop,
@@ -34,6 +35,7 @@ export default function ProductList({
           key={product._id}
           product={product}
           variant={variant}
+          isPending={pendingProductId === product._id}
           onEdit={onEdit}
           onDelete={onDelete}
           onAddToShop={onAddToShop}
