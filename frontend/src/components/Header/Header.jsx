@@ -30,7 +30,7 @@ export default function Header() {
             onClick={() => setIsMenuOpen(true)}
             aria-label="Open menu"
           >
-            <Icon name="icon-burger" className={styles.burgerIcon} />
+            <Icon name="burger" className={styles.burgerIcon} />
           </button>
           <div className={styles.desktopNav}>
             <Nav />

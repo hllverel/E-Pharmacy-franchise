@@ -80,7 +80,7 @@ export default function ProductForm({
           className={styles.fileInput}
           onChange={handleImageChange}
         />
-        <Icon name="icon-paperclip" className={styles.uploadIcon} />
+        <Icon name="paperclip" className={styles.uploadIcon} />
         <span className={styles.uploadText}>{imageLabel}</span>
       </label>
 

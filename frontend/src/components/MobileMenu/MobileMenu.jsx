@@ -31,7 +31,7 @@ export default function MobileMenu({ isOpen, onClose, onLogout }) {
           onClick={onClose}
           aria-label="Close menu"
         >
-          <Icon name="icon-close" className={styles.closeIcon} />
+          <Icon name="close" className={styles.closeIcon} />
         </button>
         <Nav onNavigate={onClose} />
         <button type="button" className={styles.logout} onClick={onLogout}>

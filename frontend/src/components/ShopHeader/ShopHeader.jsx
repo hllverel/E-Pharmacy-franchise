@@ -11,11 +11,11 @@ export default function ShopHeader({ shop, onAddMedicine }) {
           <span className={styles.ownerLabel}>Owner:</span> {shop.ownerName}
         </p>
         <p className={styles.info}>
-          <Icon name="icon-location" className={styles.icon} />
+          <Icon name="location" className={styles.icon} />
           {shop.street}
         </p>
         <p className={styles.info}>
-          <Icon name="icon-phone" className={styles.icon} />
+          <Icon name="phone" className={styles.icon} />
           {shop.phone}
         </p>
         <div className={styles.actions}>

@@ -29,7 +29,7 @@ export default function Pagination({ page, totalPages, onChange }) {
             disabled={isFirst}
             aria-label="First page"
           >
-            <Icon name="icon-chevrons" className={`${styles.icon} ${styles.flip}`} />
+            <Icon name="chevrons" className={`${styles.icon} ${styles.flip}`} />
           </button>
         </li>
         <li>
@@ -40,7 +40,7 @@ export default function Pagination({ page, totalPages, onChange }) {
             disabled={isFirst}
             aria-label="Previous page"
           >
-            <Icon name="icon-chevron" className={`${styles.icon} ${styles.flip}`} />
+            <Icon name="chevron" className={`${styles.icon} ${styles.flip}`} />
           </button>
         </li>
 
@@ -78,7 +78,7 @@ export default function Pagination({ page, totalPages, onChange }) {
             disabled={isLast}
             aria-label="Next page"
           >
-            <Icon name="icon-chevron" className={styles.icon} />
+            <Icon name="chevron" className={styles.icon} />
           </button>
         </li>
         <li>
@@ -89,7 +89,7 @@ export default function Pagination({ page, totalPages, onChange }) {
             disabled={isLast}
             aria-label="Last page"
           >
-            <Icon name="icon-chevrons" className={styles.icon} />
+            <Icon name="chevrons" className={styles.icon} />
           </button>
         </li>
       </ul>

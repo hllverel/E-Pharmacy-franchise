@@ -32,7 +32,7 @@ export default function FilterPanel({
             </option>
           ))}
         </select>
-        <Icon name="icon-chevron" className={styles.selectIcon} />
+        <Icon name="chevron" className={styles.selectIcon} />
       </div>
 
       <div className={styles.searchWrap}>
@@ -44,11 +44,11 @@ export default function FilterPanel({
           onChange={(event) => setSearch(event.target.value)}
           className={styles.search}
         />
-        <Icon name="icon-search" className={styles.searchIcon} />
+        <Icon name="search" className={styles.searchIcon} />
       </div>
 
       <button type="submit" className={styles.button}>
-        <Icon name="icon-filter" className={styles.buttonIcon} />
+        <Icon name="filter" className={styles.buttonIcon} />
         Filter
       </button>
     </form>

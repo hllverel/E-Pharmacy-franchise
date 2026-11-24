@@ -54,7 +54,7 @@ export default function Modal({ title, onClose, initialFocusRef, children }) {
           onClick={onClose}
           aria-label="Close"
         >
-          <Icon name="icon-close" className={styles.closeIcon} />
+          <Icon name="close" className={styles.closeIcon} />
         </button>
       </div>
     </dialog>
