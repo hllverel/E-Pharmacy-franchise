@@ -57,4 +57,8 @@
     margin-top: 226px;
     flex-direction: row;
   }
+
+  .hero {
+    min-width: 612px;
+  }
 }
