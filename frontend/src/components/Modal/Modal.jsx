@@ -2,7 +2,7 @@ import { useEffect, useId, useRef } from 'react';
 import Icon from '../Icon/Icon';
 import styles from './Modal.module.css';
 
-export default function Modal({ title, onClose, initialFocusRef, children }) {
+export default function Modal({ title, onClose, initialFocusRef, wide = false, children }) {
   const dialogRef = useRef(null);
   const pressedOnBackdrop = useRef(false);
   const titleId = useId();
@@ -37,7 +37,7 @@ export default function Modal({ title, onClose, initialFocusRef, children }) {
   return (
     <dialog
       ref={dialogRef}
-      className={styles.dialog}
+      className={`${styles.dialog} ${wide ? styles.wide : ''}`}
       aria-labelledby={titleId}
       onMouseDown={handleMouseDown}
       onClick={handleClick}
