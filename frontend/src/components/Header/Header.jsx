@@ -34,12 +34,20 @@ export default function Header() {
             <Icon name="burger" className={styles.burgerIcon} />
           </button>
 
-          <div className={styles.desktopNav}>
+          {/* <div className={styles.desktopNav}>
             <Nav />
             <button type="button" className={styles.logout} onClick={handleLogout}>
               Log out
             </button>
-          </div>
+          </div> */}
+
+            <div className={styles.desktopNav}>
+    <Nav />
+  </div>
+
+  <button type="button" className={styles.desktopLogout} onClick={handleLogout}>
+    Log out
+  </button>
           
           <MobileMenu
             isOpen={isMenuOpen}

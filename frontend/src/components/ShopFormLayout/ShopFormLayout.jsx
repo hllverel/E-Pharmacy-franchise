@@ -6,19 +6,18 @@ export default function ShopFormLayout({ title, children }) {
   return (
     <section className={styles.section}>
       <div className={styles.card}>
-        <h1 className={styles.title}>{title}</h1>
+        <h2 className={styles.title}>{title}</h2>
         <p className={styles.subtitle}>
           This information will be displayed publicly so be careful what you
           share.
         </p>
         {children}
       </div>
+      
       <img
         src={photo}
         srcSet={`${photo} 1x, ${photo2x} 2x`}
-        alt=""
-        width="456"
-        height="624"
+        alt="image of medicine"
         loading="lazy"
         className={styles.photo}
       />
