@@ -10,28 +10,33 @@ const REVIEWS_PER_PAGE = 3;
 
 export default function ReviewsTab({ shopId, productId }) {
   const [page, setPage] = useState(1);
-  const [data, setData] = useState({ reviews: [], totalPages: 1 });
-  const [isLoading, setIsLoading] = useState(true);
+  const [result, setResult] = useState(null);
 
   useEffect(() => {
     let isCancelled = false;
-    setIsLoading(true);
 
     getReviewsRequest(shopId, productId, { page, limit: REVIEWS_PER_PAGE })
-      .then((result) => {
-        if (!isCancelled) setData(result);
+      .then((data) => {
+        if (isCancelled) return;
+        setResult({
+          page,
+          reviews: data.reviews,
+          totalPages: data.totalPages,
+          hasError: false,
+        });
       })
       .catch((error) => {
-        if (!isCancelled) toast.error(getErrorMessage(error));
-      })
-      .finally(() => {
-        if (!isCancelled) setIsLoading(false);
+        if (isCancelled) return;
+        toast.error(getErrorMessage(error));
+        setResult({ page, reviews: [], totalPages: 1, hasError: true });
       });
 
     return () => {
       isCancelled = true;
     };
   }, [shopId, productId, page]);
+
+  const isLoading = !result || result.page !== page;
 
   if (isLoading) {
     return (
@@ -41,18 +46,22 @@ export default function ReviewsTab({ shopId, productId }) {
     );
   }
 
-  if (data.reviews.length === 0) {
+  if (result.hasError) {
+    return <p className={styles.message}>Could not load the reviews.</p>;
+  }
+
+  if (result.reviews.length === 0) {
     return <p className={styles.message}>No reviews yet.</p>;
   }
 
   return (
     <>
       <ul className={styles.list}>
-        {data.reviews.map((review) => (
+        {result.reviews.map((review) => (
           <ReviewCard key={review._id} review={review} />
         ))}
       </ul>
-      <Pagination page={page} totalPages={data.totalPages} onChange={setPage} />
+      <Pagination page={page} totalPages={result.totalPages} onChange={setPage} />
     </>
   );
 }

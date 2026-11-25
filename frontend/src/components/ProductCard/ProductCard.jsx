@@ -8,7 +8,7 @@ export default function ProductCard({ product, variant, isPending, onEdit, onDel
   return (
     <li className={styles.card}>
       <div className={styles.imageBox}>
-        <img
+        {/* <img
           src={product.photo || placeholder}
           srcSet={`product.photo || ${placeholder} 1x, product.photo || ${placeholder2x} 2x`}
           alt={product.name}
@@ -16,7 +16,20 @@ export default function ProductCard({ product, variant, isPending, onEdit, onDel
           height="280"
           loading="lazy"
           className={styles.image}
-        />
+        /> */}
+        <img
+  src={product.photo || placeholder}
+  srcSet={
+    product.photo
+      ? undefined
+      : `${placeholder} 1x, ${placeholder2x} 2x`
+  }
+  alt={product.name}
+  width="280"
+  height="280"
+  loading="lazy"
+  className={styles.image}
+/>
       </div>
       <div className={styles.info}>
         <div className={styles.titleRow}>

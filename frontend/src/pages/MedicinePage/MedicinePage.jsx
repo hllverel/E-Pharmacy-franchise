@@ -17,9 +17,7 @@ const TABS = [
   { id: 'reviews', label: 'Reviews' },
 ];
 
-export default function MedicinePage() {
-  const { productId } = useParams();
-  const shopId = useSelector(selectShopId);
+function MedicineContent({ shopId, productId }) {
   const { addProduct, pendingId } = useAddToShop();
 
   const [product, setProduct] = useState(null);
@@ -29,10 +27,6 @@ export default function MedicinePage() {
 
   useEffect(() => {
     let isCancelled = false;
-    setStatus('loading');
-    setProduct(null);
-    setTab('description');
-    setIsAdded(false);
 
     getProductRequest(shopId, productId)
       .then((result) => {
@@ -104,5 +98,18 @@ export default function MedicinePage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function MedicinePage() {
+  const { productId } = useParams();
+  const shopId = useSelector(selectShopId);
+
+  return (
+    <MedicineContent
+      key={`${shopId}:${productId}`}
+      shopId={shopId}
+      productId={productId}
+    />
   );
 }
