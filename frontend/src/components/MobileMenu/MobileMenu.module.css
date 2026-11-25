@@ -1,0 +1,109 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+  background-color: rgba(29, 30, 33, 0.4);
+  animation: fade-in 0.25s ease-out;
+}
+
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  min-width: 210px;
+  height: 100%;
+  padding: 0 38px;
+  overflow-y: auto;
+  background-color: var(--green);
+  animation: slide-in 0.25s ease-out;
+}
+
+.panel > nav {
+  margin-block: auto;
+}
+
+.close {
+  position: absolute;
+  top: 31px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.closeIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.logout {
+  cursor: pointer;
+  position: absolute;
+  bottom: 40px;
+  border: 1px solid rgba(241, 241, 241, 0.5);
+    border-radius: 60px;
+    width: 107px;
+    height: 40px;
+    text-align: center;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    color: #f1f1f1;
+}
+
+.logout:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.close:focus-visible,
+.logout:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+@media (min-width: 768px) {
+  .close {
+    top: 39px;
+    right: 32px;
+  }
+
+  .logout {
+    width: 115px;
+height: 44px;
+bottom: 64px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .backdrop {
+    display: none;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .panel {
+    animation: none;
+  }
+}

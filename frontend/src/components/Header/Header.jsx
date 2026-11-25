@@ -29,15 +29,18 @@ export default function Header() {
             className={styles.burger}
             onClick={() => setIsMenuOpen(true)}
             aria-label="Open menu"
+            aria-expanded={isMenuOpen}
           >
             <Icon name="burger" className={styles.burgerIcon} />
           </button>
+
           <div className={styles.desktopNav}>
             <Nav />
             <button type="button" className={styles.logout} onClick={handleLogout}>
               Log out
             </button>
           </div>
+          
           <MobileMenu
             isOpen={isMenuOpen}
             onClose={() => setIsMenuOpen(false)}
