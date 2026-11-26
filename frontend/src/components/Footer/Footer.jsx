@@ -18,7 +18,6 @@ export default function Footer() {
       <div className={styles.brand}>
         <Logo light />
       </div>
-
       <p className={styles.text}>
         Created a drug franchise that embodies effective formulas and changes the
         approach to treatment.
@@ -52,16 +51,14 @@ export default function Footer() {
         ))}
       </ul>
 
+      <div className={styles.seperator}></div>
+
       <div className={styles.bottom}>
         <p className={styles.copyright}>© E-Pharmacy 2023. All Rights Reserved</p>
-        <ul className={styles.legal}>
-          <li>
-            <a href="#" className={styles.legalLink}>Privacy Policy</a>
-          </li>
-          <li>
-            <a href="#" className={styles.legalLink}>Terms & Conditions</a>
-          </li>
-        </ul>
+        <span>|</span>
+        <a href="#" className={styles.legalLink}>Privacy Policy</a>
+        <span>|</span>
+        <a href="#" className={styles.legalLink}>Terms & Conditions</a>
       </div>
     </footer>
   );

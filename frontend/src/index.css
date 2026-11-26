@@ -23,7 +23,11 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding: 20px;
+  /* padding: 20px; */
+}
+
+main {
+  padding: 0 20px 80px 20px;
 }
 
 h1 {
@@ -80,9 +84,14 @@ input {
 }
 
 @media (min-width: 768px) {
-  body {
+  /* body {
     padding: 28px 32px;
+  } */
+
+  main {
+    padding: 0 32px 120px 32px;
   }
+
   h1 {
     font-size: 54px;
     line-height: 1.11111;
@@ -100,7 +109,11 @@ input {
 }
 
 @media (min-width: 1440px) {
-  body {
+  /* body {
     padding: 28px 128px;
+  } */
+
+  main {
+    padding: 0 128px 100px 128px;
   }
 }

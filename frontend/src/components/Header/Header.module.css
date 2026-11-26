@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 20px 20px 0 20px;
   margin-bottom: 64px;
 }
 
@@ -16,9 +17,16 @@
 }
 
 @media (min-width: 768px) {
+  .header {
+    padding: 28px 32px 0 32px;
+  }
 }
 
 @media (min-width: 1440px) {
+  .header {
+    padding: 28px 128px 0 128px;
+  }
+
   .burger {
     display: none;
   }

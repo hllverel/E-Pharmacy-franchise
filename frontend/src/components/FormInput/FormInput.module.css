@@ -30,3 +30,8 @@
 .input:focus {
   outline: 1px solid var(--green);
 }
+
+.error {
+  font-size: 12px;
+  margin-top: 4px;
+}

@@ -1,3 +1,165 @@
-.footer  {
-    background: var(--green);
+.footer {
+  background: var(--green);
+  padding: 20px;
+}
+
+.brand {
+  margin-bottom: 20px;
+}
+
+.text {
+  color: var(--grey);
+  margin-bottom: 40px;
+  width: 261px;
+}
+
+.nav {
+  margin-bottom: 80px;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.navLink {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.28571;
+  color: var(--grey);
+}
+
+.social {
+  display: none;
+}
+
+.seperator {
+  height: 1px;
+  background: rgba(247, 248, 250, 0.3);
+  margin: 80px 0 20px 0;
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.copyright,
+.legalLink {
+  color: var(--grey);
+  font-size: 10px;
+  line-height: 1;
+}
+
+.bottom span {
+  color: #f7f8fa;
+  font-size: 10px;
+  opacity: 20%;
+}
+
+@media (min-width: 768px) {
+  .footer {
+    padding: 32px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .text {
+    font-size: 16px;
+    line-height: 1.25;
+    grid-column-start: 1;
+    grid-row-start: 2;
+    margin: 0;
+  }
+
+  .nav {
+    margin-bottom: 0;
+    margin-top: 9px;
+    grid-column-start: 2;
+    grid-row-start: 1;
+  }
+
+  .navList {
+    justify-content: flex-end;
+  }
+
+  .navLink {
+    font-size: 16px;
+    line-height: 1.25;
+  }
+
+  .social {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+
+  .socialIcon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .seperator {
+    margin: 88px 0 32px 0;
+    grid-column: span 2 / span 2;
+  }
+
+  .bottom {
+    grid-column: span 2 / span 2;
+    grid-row-start: 4;
+  }
+
+  .copyright,
+  .legalLink {
+    font-size: 14px;
+    line-height: 1.28571;
+  }
+
+  .bottom span {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .footer {
+    padding: 40px 128px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .text {
+    grid-column-start: 1;
+    grid-row-start: 2;
+    width: 311px;
+  }
+
+  .nav {
+    grid-column-start: 2;
+    grid-row-start: 1;
+    margin: 0;
+  }
+
+  .navList {
+    gap: 50px;
+    justify-content: center;
+  }
+
+  .social {
+    grid-column-start: 3;
+    grid-row-start: 1;
+  }
+
+  .seperator {
+    margin-bottom: 64px 0 40px 0;
+    grid-column: span 3 / span 3;
+    grid-row-start: 3;
+  }
+
+  .bottom {
+    grid-column: span 3 / span 3;
+    grid-row-start: 4;
+    margin: 0 auto;
+  }
 }
