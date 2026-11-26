@@ -6,12 +6,13 @@ export default function ShopHeader({ shop, onAddMedicine }) {
   return (
     <div className={styles.header}>
       <h1 className={styles.title}>{shop.name}</h1>
+
       <div className={styles.details}>
         <p className={styles.owner}>
           <span className={styles.ownerLabel}>Owner:</span> {shop.ownerName}
         </p>
         <p className={styles.info}>
-          <Icon name="location" className={styles.icon} />
+          <Icon name="map-pin" className={styles.icon} />
           {shop.street}
         </p>
         <p className={styles.info}>
