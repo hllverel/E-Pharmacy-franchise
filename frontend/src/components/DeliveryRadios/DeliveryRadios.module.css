@@ -1,0 +1,76 @@
+.fieldset {
+  border: none;
+}
+
+.legend {
+  margin-bottom: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 129%;
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.option {
+  display: flex;
+  cursor: pointer;
+}
+
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  opacity: 0;
+}
+
+.text {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--placeholder);
+  font-size: 12px;
+  line-height: 150%;
+  transition: color 0.2s;
+}
+
+.text::before {
+  content: '';
+  box-sizing: border-box;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(18, 20, 23, 0.2);
+  border-radius: 50%;
+  background-color: transparent;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.option:hover .text::before {
+  border-color: var(--green);
+}
+
+.input:checked + .text {
+  color: var(--text);
+}
+
+.input:checked + .text::before {
+  border-color: var(--green);
+  background-color: var(--green);
+  box-shadow: inset 0 0 0 3px var(--white);
+}
+
+.input:focus-visible + .text::before {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}

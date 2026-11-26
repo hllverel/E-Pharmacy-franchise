@@ -1,3 +1,9 @@
+.label {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 129%;
+}
+
 .input {
   height: 44px;
   width: 100%;
@@ -9,6 +15,7 @@
   font-size: 12px;
   line-height: 1.5;
   color: var(--text);
+  margin-top: 8px;
 }
 
 .input::placeholder {
@@ -22,11 +29,4 @@
 .input:active,
 .input:focus {
   outline: 1px solid var(--green);
-}
-
-@media (min-width: 768px) {
-  .input {
-    min-width: 280px;
-    max-width: 323px;
-  }
 }
