@@ -1,3 +1,7 @@
+.header {
+  margin-bottom: 40px;
+}
+
 .title {
   margin-bottom: 20px;
 }
@@ -9,6 +13,12 @@
 
 .ownerLabel {
   color: var(--lighttext);
+}
+
+.infoRow {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
 }
 
 .info {
@@ -24,7 +34,6 @@
 .actions {
   display: flex;
   gap: 4px;
-  margin-bottom: 40px;
 }
 
 .edit {
@@ -55,13 +64,34 @@
 
 @media (min-width: 768px) {
   .title,
-  .actions {
+  .header {
     margin-bottom: 40px;
+  }
+
+  .ownerDetails {
+    display: flex;
+    gap: 16px;
   }
 }
 
-@media (min-width: 1140) {
-  .title {
+@media (min-width: 1440px) {
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 43px;
+  }
+
+  .title,
+  .owner,
+  .infoRow,
+  .actions {
     margin: 0;
+  }
+
+  .details {
+    display: flex;
+    gap: 16px;
+    align-items: center;
   }
 }

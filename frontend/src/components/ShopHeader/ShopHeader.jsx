@@ -8,17 +8,23 @@ export default function ShopHeader({ shop, onAddMedicine }) {
       <h1 className={styles.title}>{shop.name}</h1>
 
       <div className={styles.details}>
-        <p className={styles.owner}>
-          <span className={styles.ownerLabel}>Owner:</span> {shop.ownerName}
-        </p>
-        <p className={styles.info}>
-          <Icon name="map-pin" className={styles.icon} />
-          {shop.street}
-        </p>
-        <p className={styles.info}>
-          <Icon name="phone" className={styles.icon} />
-          {shop.phone}
-        </p>
+        <div className={styles.ownerDetails}>
+          <p className={styles.owner}>
+            <span className={styles.ownerLabel}>Owner:</span> {shop.ownerName}
+          </p>
+
+          <div className={styles.infoRow}>
+            <p className={styles.info}>
+              <Icon name="map-pin" className={styles.icon} />
+              {shop.street}
+            </p>
+            <p className={styles.info}>
+              <Icon name="phone" className={styles.icon} />
+              {shop.phone}
+            </p>
+          </div>
+        </div>
+        
         <div className={styles.actions}>
           <Link to="/edit-shop" className={styles.edit}>
             Edit data
